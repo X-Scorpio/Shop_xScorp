@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block body_block %}
+<div class="container">
+  <h1>Release Notes</h1>
+  <h3>These are all the changes that are registered.</h3>
+  <h5>You don't need to know what was before then... just get the point that those aren't important</h5>
+  <div class="jumbotron">
+    <table class="table table-hover table-borderless table-striped">
+      <caption>All registered changes (updated every Sunday)</caption>
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Changes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">11/04</th>
+          <td>
+            <ul>
+              <li>Added "Agreements/Notes"</li>
+              <li>Added "View User Profile"</li>
+              <li>Added "Footer", "Navbar w/ container"</li>
+              <li>Changed: login with email instead</li>
+            </ul>
+          </td>
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

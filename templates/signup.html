@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block nav %}
+<nav class="navbar navbar fixed-top navbar-expand-md navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <img src="https://pbs.twimg.com/profile_images/1044331817631772672/GNTfjTIa_400x400.jpg" width="30" height="30" class="d-inline-block align-top" alt="">
+      x_Scorpio
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <form class="form-inline my-2 my-lg-0">
+      <div class="button-toolbar">
+        <a href="/login" class="btn btn-outline-warning">Login</a>
+      </div>
+    </form>
+  </div>
+</nav>
+{% endblock %}
+{% block body_block %}
+<div class="container">
+  <h1>Sign Up</h1>
+  <h5>Please enter your new user's <em>name, email, and password (longer than 8 characters)</em>.</h5>
+  <h5>Note that all fields are required to be filled in. If you want to go back, just press the 'back' button on your browser's toolbar.</h5>
+  <div class="jumbotron">
+    <form action="/signup" method="post">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">Username</span>
+        </div>
+        <input type="text" id="name" class="form-control" name="name" placeholder="Username" required>
+      </div>
+      {% if errors['name'] %}
+        <p style="color: red;">{{ errors['name'] }}: {{ name }}</p>
+      {% endif %}
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">Email</span>
+        </div>
+        <input type="email" id="email" class="form-control" name="email" placeholder="Email" required>
+      </div>
+      {% if errors['email'] %}
+        <p style="color: red;">{{ errors['email'] }}: {{ email }}</p>
+      {% endif %}
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">Password</span>
+        </div>
+        <input type="password" id="password" class="form-control" name="password" placeholder="Password" required>
+      </div>
+      {% if errors['password'] %}
+        <p style="color: red;">{{ errors['password'] }}: {{ password }}</p>
+      {% endif %}
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">Confirm Password</span>
+        </div>
+        <input type="password" id="conf_password" class="form-control" name="conf_password" placeholder="Confirm Password" required>
+      </div>
+      {% if errors['conf_password'] %}
+        <p style="color: red;">{{ errors['conf_password'] }}: {{ conf_password }}</p>
+      {% endif %}
+      <hr class="my-4">
+      <div align="right">
+        <p><button type="submit" class="btn btn-outline-success">Submit</button></p>
+      </div>
+    </form>
+  </div>
+  <form action="/login">
+    <p><button type="submit" class="btn btn-outline-info">Return</button></p>
+  </form>
+</div>
+{% endblock %}

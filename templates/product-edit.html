@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block script %}
+<link rel="stylesheet" href="/css/edit.css"/>
+{% endblock %}
+{% block body_block %}
+<div class="container">
+  <div class="py-5 text-center">
+    <img class="d-block mx-auto mb-4" src="/images/Icon.jpg" alt="" width="72" height="72">
+    <h2>Edit product -- {{product[1]}}</h2>
+    <p class="lead">This is the edit page of this item. Note that you have to fill in every field</p>
+  </div>
+  <div class="row">
+    <div class="col-md-4 order-md-2 mb-4">
+      <h4 class="d-flex justify-content-between align-items-center mb-3">
+        <span class="text-muted">Image</span>
+      </h4>
+      <img src="/images/DaMemeBobo.jpg" width="320" height="320" class="mb-3" alt="">
+    </div>
+    <div class="col-md-8 order-md-1">
+      <h4 class="mb-3">Edit Item    <button type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#exampleModal">Delete</button></h4>
+      <form action="/shop/product/{{product[0]}}/edit" method="post">
+        <div class="mb-3">
+          <label for="username">Name</label>
+          <div class="input-group">
+            <input type="text" id="name" class="form-control" placeholder="{{ product[1] }}" name="name" required>
+            <div class="invalid-feedback" style="width: 100%;">
+              The price has to be a positive number
+            </div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="username">Price</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">$</span>
+            </div>
+            <input type="number" id="price" class="form-control" placeholder="{{ product[2] }}" name="price" required>
+            <div class="invalid-feedback" style="width: 100%;">
+              The price has to be a positive number
+            </div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="username">Quantity</label>
+          <div class="input-group">
+            <input type="number" id="qty" class="form-control" placeholder="{{ product[3] }}" name="qty" required>
+            <div class="invalid-feedback" style="width: 100%;">
+              The quantity has to be a positive integer
+            </div>
+          </div>
+        </div>
+        <hr class="mb-4">
+        <div align="right">
+          <p><button type="submit" class="btn btn-outline-success btn-block">Submit</button></p>
+        </div>
+      </form>
+      <div align="right">
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                Are you sure you want to delete this product?
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+                <form action="/shop/product/{{product[0]}}/delete" method="post">
+                  <button type="submit" class="btn btn-outline-danger">Delete</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

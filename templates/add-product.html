@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block body_block %}
+<div class="container">
+  <h1>Add Product</h1>
+  <h5>Please enter your new product's <em>name, price, and quantity</em>.</h5>
+  <h5>Note that all fields are required to be filled in. If you want to go back, just press the 'back' button on your browser's toolbar.</h5>
+  <div class="jumbotron">
+    <form action="/shop/add-product" method="post">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">Product Name</span>
+        </div>
+        <input type="text" id="name" class="form-control" name="name" placeholder="{{ name }}" required>
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">Product Price</span>
+        </div>
+        <input type="number" id="price" class="form-control" name="price" placeholder="{{ price }}" required>
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">Quantity</span>
+        </div>
+        <input type="number" id="qty" class="form-control" pattern="\d+" name="qty" placeholder="{{ qty }}" required>
+      </div>
+      <hr class="my-4">
+      <div align="right">
+        <p><button type="submit" class="btn btn-outline-success">Submit</button></p>
+      </div>
+    </form>
+  </div>
+  <form action="/shop">
+    <p><button type="submit" class="btn btn-outline-info">Return</button></p>
+  </form>
+</div>
+{% endblock %}

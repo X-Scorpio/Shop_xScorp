@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block body_block %}
+<div class="container">
+  <h1>User: {{user[1]}}</h1>
+  <h5>These are the informations for this dude:</h5>
+  <div class="jumbotron">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-action">ID: {{user[0]}}</li>
+      <li class="list-group-item list-group-item-action">Email: {{user[2]}}</li>
+      <li class="list-group-item list-group-item-action">Password: (You have to remember this)</li>
+    </ul>
+    <hr class="my-4">
+  </div>
+  <form action="/">
+    <p><button type="submit" class="btn btn-outline-info">Return</button></p>
+  </form>
+</div>
+{% endblock %}

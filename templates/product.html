@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block body_block %}
+<div class="container">
+  <h1>Shop Item: {{product[1]}}</h1>
+  <h5>These are the informations for this product:</h5>
+  <div class="jumbotron">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-action">ID: {{product[0]}}</li>
+      <li class="list-group-item list-group-item-action">Price: NT$ {{product[2]}}</li>
+      <li class="list-group-item list-group-item-action">Quantity: {{product[3]}}</li>
+    </ul>
+    <hr class="my-4">
+    <div align="right">
+      <form action="/shop/product/{{product[0]}}/edit" method="post">
+        <p><button type="submit" class="btn btn-outline-warning">Edit Item</button></p>
+      </form>
+    </div>
+  </div>
+  <form action="/shop">
+    <p><button type="submit" class="btn btn-outline-info">Return</button></p>
+  </form>
+</div>
+{% endblock %}

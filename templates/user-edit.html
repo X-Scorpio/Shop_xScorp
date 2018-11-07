@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% block script %}
+<link rel="stylesheet" href="/css/user-edit.css"/>
+{% endblock %}
+{% block body_block %}
+<div class="container">
+  <div class="py-5 text-center">
+    <img class="d-block mx-auto mb-4" src="/images/Icon.jpg" alt="" width="72" height="72">
+    <h2>Edit Page - {{user[1]}}</h2>
+    <p class="lead">If you don't want to change the field, re-type the original data in the box.</p>
+  </div>
+  <div class="row">
+    <div class="col-md-4 order-md-2 mb-4">
+      <h4 class="d-flex justify-content-between align-items-center mb-3">
+        <span class="text-muted">Image</span>
+      </h4>
+      <img src="/images/DaMemeXtreme.jpg" width="320" height="320" class="mb-3" alt="">
+    </div>
+    <div class="col-md-8 order-md-1">
+      <h4 class="mb-3">Please fill in every field.    <button type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#exampleModal">Delete</button></h4>
+      <form action="/user/{{user[0]}}/edit" method="post">
+        <div class="mb-3">
+          <label for="name">Username</label>
+          <div class="input-group">
+            <input type="text" id="name" class="form-control" name="name" placeholder="{{ user[1] }}" required>
+            {% if errors['name'] %}
+            <div class="invalid-feedback" style="width: 100%;">
+              {{ errors['name']}}: {{ name }}
+            </div>
+            {% endif %}
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="email">Email</label>
+          <div class="input-group">
+            <input type="email" id="email" class="form-control" name="email" placeholder="{{ user[2] }}" required>
+            {% if errors['email'] %}
+            <div class="invalid-feedback" style="width: 100%;">
+              {{ errors['email']}}: {{ email }}
+            </div>
+            {% endif %}
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="password">Password</label>
+          <div class="input-group">
+            <input type="password" id="password" class="form-control" name="password" placeholder="You have to remember this" required>
+            {% if errors['password'] %}
+            <div class="invalid-feedback" style="width: 100%;">
+              {{ errors['password']}}: {{ password }}
+            </div>
+            {% endif %}
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="conf_password">Confirm Password</label>
+          <div class="input-group">
+            <input type="password" id="conf_password" class="form-control" name="conf_password" placeholder="Confirm Password" required>
+            <div class="invalid-feedback" style="width: 100%;">
+              {{ errors['conf_password']}}: {{ conf_password }}
+            </div>
+          </div>
+        </div>
+        <hr class="mb-4">
+        <button class="btn btn-outline-primary btn-lg btn-block" type="submit">Commit Changes</button>
+      </form>
+      <div align="right">
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                Are you sure you want to delete this dude?
+                He might be sad T_T
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+                <form action="/user/{{user[0]}}/delete" method="post">
+                  <button type="submit" class="btn btn-outline-danger">Delete</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

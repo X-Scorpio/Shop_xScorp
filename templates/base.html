@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>{{ title }}</title>
+    <link rel="icon" href="/images/Icon2.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <script src="/js/base.js"></script>
+    <script src="/js/jquery.js"></script>
+    <script src="/js/popper.js"></script>
+    <script src="/js/bootstrap.js"></script>
+    {% block script%}
+    {% endblock %}
+  </head>
+  <body>
+    <header>
+      {% block nav %}
+        <nav class="navbar navbar fixed-top navbar-expand-md navbar-dark bg-dark">
+          <div class="container">
+            <a class="navbar-brand" href="/"><img src="https://pbs.twimg.com/profile_images/1044331817631772672/GNTfjTIa_400x400.jpg" width="30" height="30" class="d-inline-block align-top" alt="">
+              
+              x_Scorpio
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/shop">Da Shop™</a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Notes
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/privacy">Privacy &raquo;</a>
+                    <a class="dropdown-item" href="/terms">Terms &raquo;</a>
+                    <a class="dropdown-item" href="/releasenotes">Release Notes &raquo;</a>
+                  </div>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Online
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="https://github.com/X-Scorpio/StoneCampus">Github &raquo;</a>
+                    <a class="dropdown-item" href="https://x-scorpio.github.io/StoneCampus/">README &raquo;</a>
+                    <a class="dropdown-item" href="">PythonAnywhere &raquo;</a>
+                  </div>
+                </li>
+                {% if user %}
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      {{ name }}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="/user/{{ user }}">View Info</a>
+                      <a class="dropdown-item" href="/user/{{ user }}/edit">Edit Profile</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="/logout">Log Out</a>
+                    </div>
+                  </li>
+                {% endif %}
+              </ul>
+              <form class="form-inline my-2 my-lg-0">
+                {% if not user %}
+                  <div class="button-toolbar">
+                    <a href="/login" class="btn btn-outline-warning">Login</a>
+                    <a href="/signup" class="btn btn-outline-warning">SignUp</a>
+                  </div>
+                {% else %}
+                  <div class="button-toolbar">
+                    <a href="/logout" class="btn btn-outline-primary">Logout</a>
+                  </div>
+                {% endif %}
+              </form>
+            </div>
+          </div>
+        </nav>
+      {% endblock %}
+    </header>
+    {% block carousel %}
+    {% endblock %}
+    {% block body_block %}
+    {% endblock %}
+    <footer class="footer">
+      <hr class="my-4"/>
+      <div class="container">
+        <p class="float-right"><a href="#">Back to top</a></p>
+        <p class="float-right"><a href="#"></a></p>
+        <p>&copy; 2018-2019 Team Liquid FanPage &trade; @ClashRoyale &middot; <a href="/privacy">Privacy</a> &middot; <a href="/terms">Terms</a></p>
+      </div>
+    </footer>
+  </body>
+</html>
