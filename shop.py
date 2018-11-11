@@ -4,17 +4,18 @@ import sqlite3, sys, pdms, os, ssl
 
 app = Flask(__name__, static_url_path='')
 app.secret_key = 'xScorpio2232'
-    
+
 @app.route("/")
 def index():
     uid = session.get('user_id')
     with pdms.connect_db() as conn:
         data = pdms.get_user(conn, uid)
         if uid:
+            idx = data[0]
             name = data[1]
         else:
             name = '[]'
-    return render_template('index.html', user=uid, name=name, title="#LetsGoLiquid")
+    return render_template('index.html', user=uid, id=idx, name=name, title="#LetsGoLiquid")
 
 @app.errorhandler(500)
 def internal_error(e):
@@ -22,10 +23,11 @@ def internal_error(e):
     with pdms.connect_db() as conn:
         data = pdms.get_user(conn, uid)
         if uid:
+            idx = data[0]
             name = data[1]
         else:
             name = '[]'
-    return render_template('500.html', user=uid, name=name, title="#LetsGoLiquid"), 500
+    return render_template('500.html', user=uid, id=idx, name=name, title="#LetsGoLiquid"), 500
     
 @app.errorhandler(404)
 def page_not_found(e):
@@ -33,10 +35,11 @@ def page_not_found(e):
     with pdms.connect_db() as conn:
         data = pdms.get_user(conn, uid)
         if uid:
+            idx = data[0]
             name = data[1]
         else:
             name = '[]'
-    return render_template('404.html', user=uid, name=name, title="#LetsGoLiquid"), 404
+    return render_template('404.html', user=uid, id=idx, name=name, title="#LetsGoLiquid"), 404
 
 @app.route("/shop")
 def shop():
@@ -44,15 +47,12 @@ def shop():
     with pdms.connect_db() as conn:
         data = pdms.get_user(conn, uid)
         if uid:
+            idx = data[0]
             name = data[1]
         else:
             name = '[]'
         pds = pdms.get_products(conn)
-        return render_template("shop.html", products=pds, user=uid, name=name, title="#LetsGoLiquid")
-
-@app.route("/album")
-def album():
-    return render_template("album.html")
+        return render_template("shop.html", products=pds, user=uid, id=idx, name=name, title="#LetsGoLiquid")
 
 @app.route("/shop/add-product", methods = ['GET', 'POST'])
 def add_product():
@@ -60,6 +60,7 @@ def add_product():
     with pdms.connect_db() as conn:
         data = pdms.get_user(conn, uid)
         if uid:
+            idx = data[0]
             name = data[1]
         else:
             name = '[]'
@@ -81,7 +82,7 @@ def add_product():
             if len(errors) == 0:
                 pdms.add_product(conn, name, price, qty)
                 return redirect('/shop')
-        return render_template('add-product.html', name=name, price=price, qty=qty, user=uid, title="#LetsGoLiquid")
+        return render_template('add-product.html', name=name, id=idx, price=price, qty=qty, user=uid, title="#LetsGoLiquid")
 
 @app.route("/shop/product/<id>")
 def pro(id):
@@ -89,13 +90,14 @@ def pro(id):
     with pdms.connect_db() as conn:
         data = pdms.get_user(conn, uid)
         if uid:
+            idx = data[0]
             name = data[1]
         else:
             name = '[]'
         p = pdms.get_product(conn, id)
         if not p:
             abort(404)
-        return render_template("product.html", product=p, user=uid, name=name, title="#LetsGoLiquid")
+        return render_template("product.html", product=p, user=uid, id=idx, name=name, title="#LetsGoLiquid")
 
 @app.route('/shop/product/<id>/edit', methods = ['GET', 'POST'])
 def edit_p(id):
@@ -103,6 +105,7 @@ def edit_p(id):
     with pdms.connect_db() as conn:
         data = pdms.get_user(conn, uid)
         if uid:
+            idx = data[0]
             name = data[1]
         else:
             name = '[]'
@@ -128,7 +131,7 @@ def edit_p(id):
                 pdms.update_product(conn, id, name, price, qty)
                 return redirect('/shop/product/' + id)
         return render_template('product-edit.html', product=prod,
-                                name=name, price=price, qty=qty, errors=errors, user=uid, title="#LetsGoLiquid")
+                                name=name, id=idx, price=price, qty=qty, errors=errors, user=uid, title="#LetsGoLiquid")
 
 @app.route('/shop/product/<id>/delete', methods = ['POST'])
 def delete_p(id):
@@ -147,6 +150,7 @@ def login():
         with pdms.connect_db() as conn:
             data = pdms.get_user(conn, uid)
             if uid:
+                idx = data[0]
                 name = data[1]
             else:
                 name = '[]'
@@ -156,7 +160,7 @@ def login():
             if usr:
                 session['user_id'] = usr[0]
                 return redirect('/')
-    return render_template('login.html', user=uid, name=name, title="#LetsGoLiquid")
+    return render_template('login.html', user=uid, id=idx, name=name, title="#LetsGoLiquid")
 
 @app.route("/signup", methods = ['GET', 'POST'])
 def signup():
@@ -164,6 +168,7 @@ def signup():
     with pdms.connect_db() as conn:
         data = pdms.get_user(conn, uid)
         if uid:
+            idx = data[0]
             name = data[1]
         else:
             name = '[]'
@@ -190,7 +195,7 @@ def signup():
             if len(errors) == 0:
                 pdms.add_user(conn, name, email, password)
                 return redirect('/login')
-        return render_template('signup.html', name=name, email=email, password=password, errors = errors, user=uid, title="#LetsGoLiquid")
+        return render_template('signup.html', name=name, id=idx, email=email, password=password, errors = errors, user=uid, title="#LetsGoLiquid")
 
 @app.route("/user/<id>")
 def usr(id):
@@ -198,13 +203,14 @@ def usr(id):
     with pdms.connect_db() as conn:
         data = pdms.get_user(conn, uid)
         if uid:
+            idx = data[0]
             name = data[1]
         else:
             name = '[]'
         u = pdms.get_user(conn, id)
         if not u:
             abort(404)
-        return render_template("user.html", user=u, name=name, title="#LetsGoLiquid")
+        return render_template("user.html", user=u, name=name, id=idx, title="#LetsGoLiquid")
 
 @app.route('/user/<id>/edit', methods = ['GET', 'POST'])
 def edit_u(id):
@@ -212,6 +218,7 @@ def edit_u(id):
     with pdms.connect_db() as conn:
         data = pdms.get_user(conn, uid)
         if uid:
+            idx = data[0]
             name = data[1]
         else:
             name = '[]'
@@ -240,7 +247,7 @@ def edit_u(id):
             if len(errors) == 0:
                 pdms.update_user(conn, id, name, email, password)
                 return redirect('/')
-        return render_template('user-edit.html', user=usr,
+        return render_template('user-edit.html', user=usr, id=idx,
                                 name=name, email=email, password=password, errors=errors, title="#LetsGoLiquid")
 
 
@@ -264,10 +271,11 @@ def privacy():
     with pdms.connect_db() as conn:
         data = pdms.get_user(conn, uid)
         if uid:
+            idx = data[0]
             name = data[1]
         else:
             name = '[]'
-    return render_template('privacy.html', user=uid, name=name, title="#LetsGoLiquid")
+    return render_template('privacy.html', user=uid, id=idx, name=name, title="#LetsGoLiquid")
 
 @app.route('/terms')
 def terms():
@@ -275,10 +283,11 @@ def terms():
     with pdms.connect_db() as conn:
         data = pdms.get_user(conn, uid)
         if uid:
+            idx = data[0]
             name = data[1]
         else:
             name = '[]'
-    return render_template('terms.html', user=uid, name=name, title="#LetsGoLiquid")
+    return render_template('terms.html', user=uid, id=idx, name=name, title="#LetsGoLiquid")
     
 @app.route('/releasenotes')
 def rnotes():
@@ -286,10 +295,11 @@ def rnotes():
     with pdms.connect_db() as conn:
         data = pdms.get_user(conn, uid)
         if uid:
+            idx = data[0]
             name = data[1]
         else:
             name = '[]'
-    return render_template('releasenotes.html', user=uid, name=name, title="#LetsGoLiquid")
+    return render_template('releasenotes.html', user=uid, id=idx, name=name, title="#LetsGoLiquid")
     
 if __name__ == "__main__":
     app.run(debug=True, ssl_context='adhoc')
