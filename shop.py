@@ -15,6 +15,7 @@ def index():
             idx = data[0]
             name = data[1]
         else:
+            idx = '[]'
             name = '[]'
     return render_template('index.html', user=uid, id=idx, name=name, title="#LetsGoLiquid")
 
