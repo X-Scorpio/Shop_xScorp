@@ -1,6 +1,10 @@
 from flask import Flask, render_template, abort, request, redirect, session
-from werkzeug import serving
+from werkzeug.utils import secure_filename
 import sqlite3, sys, pdms, os, ssl
+
+UPLOAD_FOLDER = os.path.dirname(os.path.realpath(__file__))
+UPLOAD_FOLDER = os.path.join(UPLOAD_FOLDER, 'static', 'upload')
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 
 app = Flask(__name__, static_url_path='')
 app.secret_key = 'xScorpio2232'
@@ -89,6 +93,12 @@ def add_product():
             qty = request.form.get('qty')
             if not qty or not qty.isdigit():
                 errors['qty'] = 'invalid format'
+            filename = None
+            if 'picture' in request.files:
+                pic = request.files['picture']
+                if pic and allowed_file(pic.filename):
+                    filename = secure_filename(pic.filename)
+                    pic.save(os.path.join(UPLOAD_FOLDER, filename))
             if len(errors) == 0:
                 pdms.add_product(conn, name, price, qty)
                 return redirect('/shop')
@@ -110,6 +120,10 @@ def pro(id):
         if not p:
             abort(404)
         return render_template("product.html", product=p, user=uid, id=idx, name=name, title="#LetsGoLiquid")
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @app.route('/shop/product/<id>/edit', methods = ['GET', 'POST'])
 def edit_p(id):
@@ -141,6 +155,13 @@ def edit_p(id):
             qty = request.form.get('qty')
             if not price or not qty.isdigit():
                 errors['qty'] = 'invalid format'
+            if 'file' in request.files:
+                file = request.files['file']
+                # if user does not select file, browser also
+                # submit an empty part without filename
+                if file and file.filename:
+                    fname = os.path.join(UPLOAD_FOLDER, file.filename)
+                    file.save(fname)
             if len(errors) == 0:
                 pdms.update_product(conn, id, name, price, qty)
                 return redirect('/shop/product/' + id)
