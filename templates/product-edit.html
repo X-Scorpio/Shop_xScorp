@@ -18,7 +18,7 @@
     </div>
     <div class="col-md-8 order-md-1">
       <h4 class="mb-3">Edit Item    <button type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#exampleModal">Delete</button></h4>
-      <form action="/shop/product/{{product[0]}}/edit" method="post">
+      <form action="/shop/product/{{product[0]}}/edit" method="POST" enctype="multipart/form-data">
         <div class="mb-3">
           <label for="username">Name</label>
           <div class="input-group">

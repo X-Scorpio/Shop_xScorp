@@ -4,7 +4,8 @@ import sqlite3, sys, pdms, os, ssl
 
 UPLOAD_FOLDER = os.path.dirname(os.path.realpath(__file__))
 print(UPLOAD_FOLDER)
-UPLOAD_FOLDER = os.path.join(UPLOAD_FOLDER, 'static', 'upload')
+print(__file__)
+UPLOAD_FOLDER = os.path.join(UPLOAD_FOLDER, 'static', 'uploads')
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 print(UPLOAD_FOLDER)
 
@@ -157,8 +158,10 @@ def edit_p(id):
             qty = request.form.get('qty')
             if not price or not qty.isdigit():
                 errors['qty'] = 'invalid format'
-            if 'file' in request.files:
-                file = request.files['file']
+            print(request.files)
+            if 'picture' in request.files:
+                file = request.files['picture']
+                print(file, file.filename, request.files)
                 if file and file.filename:
                     fname = os.path.join(UPLOAD_FOLDER, file.filename)
                     file.save(fname)
