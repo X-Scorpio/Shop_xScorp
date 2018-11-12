@@ -13,11 +13,12 @@ def init_product_table():
     conn = sqlite3.connect(DB_NAME)
     c = conn.cursor()
     sql = """
-        CREATE TABLE products (
-            id INTEGER PRIMARY KEY,
-            name TEXT UNIQUE NOT NULL,
-            price REAL NOT NULL,
-            qty INTEGER NOT NULL
+        CREATE TABLE `products` (
+            `id`	INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,
+            `name`	TEXT NOT NULL UNIQUE,
+            `price`	REAL NOT NULL,
+            `qty`	INTEGER NOT NULL,
+            `picture`	TEXT
         )
     """
     c.execute(sql)
@@ -36,7 +37,7 @@ def add_product(conn, name, price, qty):
 def get_product(conn, id):
     c = conn.cursor()
     sql = """
-        SELECT id, name, price, qty FROM products WHERE id = ?
+        SELECT id, name, price, qty, picture FROM products WHERE id = ?
     """
     c.execute(sql, (id,))
     return c.fetchone()
@@ -44,7 +45,7 @@ def get_product(conn, id):
 def get_products(conn):
     c = conn.cursor()
     sql = """
-        SELECT id, name, price, qty FROM products
+        SELECT id, name, price, qty, picture FROM products
     """
     c.execute(sql)
     return c.fetchall()
@@ -57,16 +58,17 @@ def remove_product(conn, id):
     c.execute(sql, (id,))
     conn.commit()
 
-def update_product(conn, id, name, price, qty):
+def update_product(conn, id, name, price, qty, picture):
     c = conn.cursor()
     sql = """
     UPDATE products
         SET name = ?,
             price = ?,
-            qty = ?
+            qty = ?,
+            picture = ?
         WHERE id = ?
     """
-    c.execute(sql, (name, price, qty, id))
+    c.execute(sql, (name, price, qty, picture, id))
     conn.commit()
 
 

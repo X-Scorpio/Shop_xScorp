@@ -158,15 +158,18 @@ def edit_p(id):
             qty = request.form.get('qty')
             if not price or not qty.isdigit():
                 errors['qty'] = 'invalid format'
-            print(request.files)
+            fname = None
+            fpath = None
             if 'picture' in request.files:
                 file = request.files['picture']
                 print(file, file.filename, request.files)
                 if file and file.filename:
-                    fname = os.path.join(UPLOAD_FOLDER, file.filename)
-                    file.save(fname)
+                    fpath = os.path.join(UPLOAD_FOLDER, file.filename)
+                    fname = os.path.basename(fpath)
+                    print("WILL IS AN IDIOT", fname)
+                    file.save(fpath)
             if len(errors) == 0:
-                pdms.update_product(conn, id, name, price, qty)
+                pdms.update_product(conn, id, name, price, qty, fname)
                 return redirect('/shop/product/' + id)
         return render_template('product-edit.html', product=prod,
                                 name=name, id=idx, price=price, qty=qty, errors=errors, user=uid, title="#LetsGoLiquid")

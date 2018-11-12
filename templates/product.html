@@ -1,21 +1,57 @@
 {% extends "base.html" %}
 {% block body_block %}
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+  <h1 class="display-4">Pricing</h1>
+  <p class="lead">Quickly build an effective pricing table for your potential customers with this Bootstrap example. It's built with default Bootstrap components and utilities with little customization.</p>
+</div>
 <div class="container">
-  <h1>Shop Item: {{product[1]}}</h1>
-  <h5>These are the informations for this product:</h5>
-  <div class="jumbotron">
-    <ul class="list-group">
-      <li class="list-group-item list-group-item-action">ID: {{product[0]}}</li>
-      <li class="list-group-item list-group-item-action">Price: NT$ {{product[2]}}</li>
-      <li class="list-group-item list-group-item-action">Quantity: {{product[3]}}</li>
-    </ul>
-    <img src="/uploads/{{ product[4] }}"/>
-    <hr class="my-4">
-    <div align="right">
-      <form action="/shop/product/{{product[0]}}/edit" method="post">
-        <p><button type="submit" class="btn btn-outline-warning">Edit Item</button></p>
-      </form>
+  <div class="card-deck mb-3 text-center">
+    <div class="card mb-4 shadow-sm">
+      <div class="card-header">
+        <h4 class="my-0 font-weight-normal">ID</h4>
+      </div>
+      <div class="card-body">
+        <h1 class="card-title pricing-card-title">{{ product[0] }}</h1>
+        <ul class="list-unstyled mt-3 mb-4">
+          <li>Identify product</li>
+          <li>Used in viewing/editing</li>
+        </ul>
+        <button type="button" class="btn btn-lg btn-block btn-outline-dark btn-sm">Never mind this 1</button>
+      </div>
     </div>
+    <div class="card mb-4 shadow-sm">
+      <div class="card-header">
+        <h4 class="my-0 font-weight-normal">Price</h4>
+      </div>
+      <div class="card-body">
+        <h1 class="card-title pricing-card-title">${{ product[2] }}</h1>
+        <ul class="list-unstyled mt-3 mb-4">
+          <li>Mark whether it's useful</li>
+          <li>Corresponding to its value</li>
+        </ul>
+        <button type="button" class="btn btn-lg btn-block btn-outline-dark btn-sm">Never mind this 2</button>
+      </div>
+    </div>
+    <div class="card mb-4 shadow-sm">
+      <div class="card-header">
+        <h4 class="my-0 font-weight-normal">Quantity</h4>
+      </div>
+      <div class="card-body">
+        <h1 class="card-title pricing-card-title">{{ product[3] }}</h1>
+        <ul class="list-unstyled mt-3 mb-4">
+          <li>Tell how much is left</li>
+          <li>Indicate when to add more</li>
+        </ul>
+        <button type="button" class="btn btn-lg btn-block btn-outline-dark btn-sm">Never mind this 3</button>
+      </div>
+    </div>
+  </div>
+  <img src="/uploads/{{ product[4] }}" style="width:1100px;height:600px;"/>
+  <hr class="my-4">
+  <div align="right">
+    <form action="/shop/product/{{product[0]}}/edit" method="post">
+      <p><button type="submit" class="btn btn-outline-warning">Edit Item</button></p>
+    </form>
   </div>
   <form action="/shop">
     <p><button type="submit" class="btn btn-outline-info">Return</button></p>
