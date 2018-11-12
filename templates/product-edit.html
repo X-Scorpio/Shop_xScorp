@@ -14,7 +14,11 @@
       <h4 class="d-flex justify-content-between align-items-center mb-3">
         <span class="text-muted">Image</span>
       </h4>
-      <img src="/images/DaMemeBobo.jpg" width="320" height="320" class="mb-3" alt="">
+      <img src="/uploads/{{ product[4] }}" width="320" height="320" class="mb-3" alt="">
+      <div>
+        <label for="picture">Picture:</label>
+        <input id="picture" type="file" name="picture">
+      </div>
     </div>
     <div class="col-md-8 order-md-1">
       <h4 class="mb-3">Edit Item    <button type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#exampleModal">Delete</button></h4>
@@ -48,10 +52,6 @@
               The quantity has to be a positive integer
             </div>
           </div>
-        </div>
-        <div>
-          <label for="picture">Picture:</label>
-          <input id="picture" type="file" name="picture">
         </div>
         <hr class="mb-4">
         <div align="right">

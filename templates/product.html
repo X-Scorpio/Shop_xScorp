@@ -1,52 +1,41 @@
 {% extends "base.html" %}
 {% block body_block %}
 <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-  <h1 class="display-4">Pricing</h1>
-  <p class="lead">Quickly build an effective pricing table for your potential customers with this Bootstrap example. It's built with default Bootstrap components and utilities with little customization.</p>
+  <h1 class="display-4">{{ product[1] }}</h1>
+  <p class="lead">This is the product that you want to view. I didn't ensure it's with high quality so don't hope it wouldn't come out as a bullsh!t</p>
 </div>
 <div class="container">
-  <div class="card-deck mb-3 text-center">
-    <div class="card mb-4 shadow-sm">
-      <div class="card-header">
-        <h4 class="my-0 font-weight-normal">ID</h4>
-      </div>
-      <div class="card-body">
-        <h1 class="card-title pricing-card-title">{{ product[0] }}</h1>
-        <ul class="list-unstyled mt-3 mb-4">
-          <li>Identify product</li>
-          <li>Used in viewing/editing</li>
-        </ul>
-        <button type="button" class="btn btn-lg btn-block btn-outline-dark btn-sm">Never mind this 1</button>
-      </div>
-    </div>
-    <div class="card mb-4 shadow-sm">
+  <div class="col-md-4 text-center float-lg-right">
+    <div class="card mb-4 shadow-sm" style="width: 18rem;">
       <div class="card-header">
         <h4 class="my-0 font-weight-normal">Price</h4>
       </div>
       <div class="card-body">
         <h1 class="card-title pricing-card-title">${{ product[2] }}</h1>
         <ul class="list-unstyled mt-3 mb-4">
-          <li>Mark whether it's useful</li>
-          <li>Corresponding to its value</li>
+          <li>Labore et dolore magna aliqua</li>
+          <li>Ut enim ad minim veniam</li>
         </ul>
         <button type="button" class="btn btn-lg btn-block btn-outline-dark btn-sm">Never mind this 2</button>
       </div>
     </div>
-    <div class="card mb-4 shadow-sm">
+    <div class="card mb-4 shadow-sm" style="width: 18rem;">
       <div class="card-header">
         <h4 class="my-0 font-weight-normal">Quantity</h4>
       </div>
       <div class="card-body">
-        <h1 class="card-title pricing-card-title">{{ product[3] }}</h1>
+        <h1 class="card-title">{{ product[3] }}</h1>
         <ul class="list-unstyled mt-3 mb-4">
-          <li>Tell how much is left</li>
-          <li>Indicate when to add more</li>
+          <li>Laboris nisi ut aliquip</li>
+          <li>Ea commodo consequat</li>
         </ul>
         <button type="button" class="btn btn-lg btn-block btn-outline-dark btn-sm">Never mind this 3</button>
       </div>
     </div>
   </div>
-  <img src="/uploads/{{ product[4] }}" style="width:1100px;height:600px;"/>
+  <div class="">
+    <img src="/uploads/{{ product[4] }}" style="width:730px;height:450px;"/>
+  </div>
   <hr class="my-4">
   <div align="right">
     <form action="/shop/product/{{product[0]}}/edit" method="post">
