@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block script %}
   <link rel="stylesheet" href="/css/index.css">
+  <script src="/js/index.js"></script>
 {% endblock %}
 {% block carousel %}
 <div id="mycarousel" class="carousel slide" data-ride="carousel">
@@ -59,6 +60,7 @@
     </div>
   </div>
   {% endblock %}
+  {% block body_block%}
   <a class="carousel-control-prev" href="#mycarousel" role="button" data-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="sr-only">Previous</span>
@@ -68,7 +70,32 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
-{% block body_block%}
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Li'l Tip</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <div class="row">
+            Do you want to waste some time and take a look at the privacy/terms?
+            It's mostly empty now but, well, it's better off knowing what we want while you're visiting.
+            <div class="col-md-4"><img src="https://img.appledaily.com.tw/images/ReNews/20180101/640_f6d5eda90bd22e8f3e7cc7a09d79a817.jpg" alt="Dat Guy"></div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+        <a href="/privacy" class="btn btn-outline-info">Privacy</a>
+        <a href="/terms" class="btn btn-outline-info">Terms</a>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="container marketing">
   <div class="row">
     <div class="col-lg-4">
