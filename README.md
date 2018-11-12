@@ -45,7 +45,9 @@ It's obvious that I did most of the works in this project, but I also want to cr
 This project will last for the entire year (until June 2019). I've been updating this regularly around once per week or ten days. Each time there will be more functions or decorations added. There might be bugs sometimes but I will try to fix them asap.
 
 ### Host
-This project will be hosted on [Python Anywhere](https://www.pythonanywhere.com). It is a service that enables you to host web applications made with python and there are many more add-ons like HTTPS support and everybody can view it online (not locally hosted).
+This project *will* be hosted on [Python Anywhere](https://www.pythonanywhere.com). It is a service that enables you to host web applications made with python and there are many more add-ons like HTTPS support and everybody can view it online (not locally hosted).
+
+So far, I also use Cloud 9 as the IDE for this project. Please go to [This site](http://shop-xscorp-xscorpio2232.c9users.io:8080/). This is a emulated version of what the site on PythonAnywhere will look like, but issues has been going on. Anyways, please don't put strange things there.
 
 ### Reasons
 The main reason why I like to do this is because I really like to develop web applications. It is also a good way to burn your excess time if you have nothing else to do. Besides, I really like Team Liquid in Clash Royale! [#LetsGoLiquid](https://www.teamliquidpro.com)
