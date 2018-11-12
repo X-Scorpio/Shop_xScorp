@@ -11,6 +11,7 @@ def index():
     with pdms.connect_db() as conn:
         data = pdms.get_user(conn, uid)
         if uid:
+            global idx, name
             idx = data[0]
             name = data[1]
         else:
@@ -23,9 +24,11 @@ def internal_error(e):
     with pdms.connect_db() as conn:
         data = pdms.get_user(conn, uid)
         if uid:
+            global idx, name
             idx = data[0]
             name = data[1]
         else:
+            idx = '[]'
             name = '[]'
     return render_template('500.html', user=uid, id=idx, name=name, title="#LetsGoLiquid"), 500
     
@@ -35,9 +38,11 @@ def page_not_found(e):
     with pdms.connect_db() as conn:
         data = pdms.get_user(conn, uid)
         if uid:
+            global idx, name
             idx = data[0]
             name = data[1]
         else:
+            idx = '[]'
             name = '[]'
     return render_template('404.html', user=uid, id=idx, name=name, title="#LetsGoLiquid"), 404
 
@@ -47,9 +52,11 @@ def shop():
     with pdms.connect_db() as conn:
         data = pdms.get_user(conn, uid)
         if uid:
+            global idx, name
             idx = data[0]
             name = data[1]
         else:
+            idx = '[]'
             name = '[]'
         pds = pdms.get_products(conn)
         return render_template("shop.html", products=pds, user=uid, id=idx, name=name, title="#LetsGoLiquid")
@@ -60,9 +67,11 @@ def add_product():
     with pdms.connect_db() as conn:
         data = pdms.get_user(conn, uid)
         if uid:
+            global idx, name
             idx = data[0]
             name = data[1]
         else:
+            idx = '[]'
             name = '[]'
         name = 'name_of_product'
         price = 'price_of_product'
@@ -90,9 +99,11 @@ def pro(id):
     with pdms.connect_db() as conn:
         data = pdms.get_user(conn, uid)
         if uid:
+            global idx, name
             idx = data[0]
             name = data[1]
         else:
+            idx = '[]'
             name = '[]'
         p = pdms.get_product(conn, id)
         if not p:
@@ -105,9 +116,11 @@ def edit_p(id):
     with pdms.connect_db() as conn:
         data = pdms.get_user(conn, uid)
         if uid:
+            global idx, name
             idx = data[0]
             name = data[1]
         else:
+            idx = '[]'
             name = '[]'
         prod = pdms.get_product(conn, id)
         if not prod:
@@ -150,9 +163,11 @@ def login():
         with pdms.connect_db() as conn:
             data = pdms.get_user(conn, uid)
             if uid:
+                global idx, name
                 idx = data[0]
                 name = data[1]
             else:
+                idx = '[]'
                 name = '[]'
             email = request.form['email']
             password = request.form['password']
@@ -168,9 +183,11 @@ def signup():
     with pdms.connect_db() as conn:
         data = pdms.get_user(conn, uid)
         if uid:
+            global idx, name
             idx = data[0]
             name = data[1]
         else:
+            idx = '[]'
             name = '[]'
         name = 'name_of_user'
         email = 'email_of_user'
@@ -203,9 +220,11 @@ def usr(id):
     with pdms.connect_db() as conn:
         data = pdms.get_user(conn, uid)
         if uid:
+            global idx, name
             idx = data[0]
             name = data[1]
         else:
+            idx = '[]'
             name = '[]'
         u = pdms.get_user(conn, id)
         if not u:
@@ -218,9 +237,11 @@ def edit_u(id):
     with pdms.connect_db() as conn:
         data = pdms.get_user(conn, uid)
         if uid:
+            global idx, name
             idx = data[0]
             name = data[1]
         else:
+            idx = '[]'
             name = '[]'
         usr = pdms.get_user(conn, id)
         if not usr:
@@ -271,9 +292,11 @@ def privacy():
     with pdms.connect_db() as conn:
         data = pdms.get_user(conn, uid)
         if uid:
+            global idx, name
             idx = data[0]
             name = data[1]
         else:
+            idx = '[]'
             name = '[]'
     return render_template('privacy.html', user=uid, id=idx, name=name, title="#LetsGoLiquid")
 
@@ -283,9 +306,11 @@ def terms():
     with pdms.connect_db() as conn:
         data = pdms.get_user(conn, uid)
         if uid:
+            global idx, name
             idx = data[0]
             name = data[1]
         else:
+            idx = '[]'
             name = '[]'
     return render_template('terms.html', user=uid, id=idx, name=name, title="#LetsGoLiquid")
     
@@ -295,9 +320,11 @@ def rnotes():
     with pdms.connect_db() as conn:
         data = pdms.get_user(conn, uid)
         if uid:
+            global idx, name
             idx = data[0]
             name = data[1]
         else:
+            idx = '[]'
             name = '[]'
     return render_template('releasenotes.html', user=uid, id=idx, name=name, title="#LetsGoLiquid")
     
