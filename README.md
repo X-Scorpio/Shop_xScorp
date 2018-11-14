@@ -1,5 +1,5 @@
 ## This is my test page on Stone Campus!
->This is only a simple page, obviously not I've been doing for three months' of time.
+>This is only a simple sample page, obviously not what I've been doing for three months' worth of time.
 >I've been working on a li'l project testing the functionality of Flask and Jinja2 and I hope you like it!
 
 ``` python
@@ -51,4 +51,7 @@ So far, I also use Cloud 9 as the IDE for this project. Please go to [This site]
 
 ### Reasons
 The main reason why I like to do this is because I really like to develop web applications. It is also a good way to burn your excess time if you have nothing else to do. Besides, I really like Team Liquid in Clash Royale! [#LetsGoLiquid](https://www.teamliquidpro.com)
+
+### Stuffs
+>Check it out here! [Shop_xScorp](http://shop-xscorp-xscorpio2232.c9users.io:8080)
 
