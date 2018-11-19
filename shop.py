@@ -356,5 +356,9 @@ def rnotes():
             name = '[]'
     return render_template('releasenotes.html', user=uid, id=idx, name=name, title="#LetsGoLiquid")
     
+@app.route('/test')
+def testhtml():
+    return render_template('test.html')
+    
 if __name__ == "__main__":
     app.run(debug=True, ssl_context='adhoc')

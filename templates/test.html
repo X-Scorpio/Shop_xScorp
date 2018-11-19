@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block body_block %}
+<div class="container">
+  <h1>Interactive Page</h1>
+  <p>Click the button below, and nothing happens</p>
+  <button class="btn btn-outline-secondary" onclick="sayHello();">Say Hello</button>
+  <button class="btn btn-outline-secondary" onclick="printRandom();">Print Random Number</button>
+  <script src="js/test.js"></script>
+</div>
+{% endblock %}

@@ -93,3 +93,8 @@ body {
   transition-duration: 5s;
   transition-delay: 2s;
 }
+
+/* Modal */
+.exampleModal {
+  animation-delay: 2s;
+}
